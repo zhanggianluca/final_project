@@ -4,24 +4,31 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
+import java.util.Random;
 
 public class GUI extends JFrame {
-    private JPanel title, r1, r2, r3, r4, r5;
+    private JPanel titlePanel, captionPanel, letterPanel, r1, r2, r3, r4, r5;
     private JTextField a1, a2, a3, a4, a5;
-    private JLabel c1, c2, c3, c4, c5, letter;
-    private ArrayList<String> categories = new ArrayList<String>(Arrays.asList("Animals", "Food", "Country", "Color", "Movie", "Four Letter Word", "Fruit/Vegetable", "TV Show", "Girl's Name", "Boy's Name", "Body Part"));
+    private JLabel c1, c2, c3, c4, c5, letterlabel, lettertitle, title, caption;
+    private String letter;
+    private ArrayList<String> categories;
     private JButton enter;
 
     public GUI() {
         setTitle("SCATTERGORIES");
+        randomLetter();
         setJTextField();
-//        setJLabel();
+        setJLabel();
         setJPanel();
 //        setJButton();
         addComponents();
 //        setActionCommands();
 //        addActionListeners();
         setLayout(new FlowLayout());
+        add(titlePanel);
+        add(captionPanel);
+        add(letterPanel);
         add(r1);
         add(r2);
         add(r3);
@@ -45,21 +52,44 @@ public class GUI extends JFrame {
     }
 
     public void setJPanel() {
-        r1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        r1.setPreferredSize(new Dimension(1000,30));
-        r1.setBackground(Color.DARK_GRAY.brighter());
-        r2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        r2.setPreferredSize(new Dimension(1000,30));
-        r2.setBackground(Color.DARK_GRAY.brighter());
-        r3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        r3.setPreferredSize(new Dimension(1000,30));
-        r3.setBackground(Color.DARK_GRAY.brighter());
-        r4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        r4.setPreferredSize(new Dimension(1000,30));
-        r4.setBackground(Color.DARK_GRAY.brighter());
+        r1 = new JPanel(new FlowLayout(FlowLayout.LEFT)); r2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        r3 = new JPanel(new FlowLayout(FlowLayout.LEFT)); r4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         r5 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        r5.setPreferredSize(new Dimension(1000,30));
-        r5.setBackground(Color.DARK_GRAY.brighter());
+        ArrayList<JPanel> panels = new ArrayList<JPanel>(Arrays.asList(r1, r2, r3, r4, r5));
+        for (JPanel panel: panels) {
+            panel.setPreferredSize(new Dimension(500, 30));
+            panel.setBackground(Color.MAGENTA.darker());
+        }
+
+        titlePanel = new JPanel();
+        titlePanel.setPreferredSize(new Dimension(500, 45));
+        titlePanel.setBackground(Color.MAGENTA.darker());
+
+        captionPanel = new JPanel();
+        captionPanel.setPreferredSize(new Dimension(500, 45));
+        captionPanel.setBackground(Color.MAGENTA.darker());
+
+        letterPanel = new JPanel();
+        letterPanel.setPreferredSize(new Dimension(500, 45));
+        letterPanel.setBackground(Color.MAGENTA.darker());
+    }
+
+    public void randomLetter() {
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        int num = (int) (Math.random()*25);
+        letter = alphabet.substring(num, num+1).toUpperCase();
+        System.out.println(letter);
+    }
+
+    public void setJLabel() {
+        title = new JLabel("<html><font color = FFFFFF>SCATTERGORIES</font>");
+        title.setFont(new Font("Stencil", Font.BOLD, 54));
+        caption = new JLabel("<html><font Color = 000000>A FUN CATEGORY WORD GAME</font>");
+        caption.setFont(new Font("Stencil", Font.PLAIN, 20));
+        lettertitle = new JLabel("<html><font color = 000000>Letter: </font>");
+        lettertitle.setFont(new Font("Stencil", Font.BOLD, 25));
+        letterlabel = new JLabel(String.format("<html><font color = 2EDF51>%s</font>", letter));
+        letterlabel.setFont(new Font("Courier New", Font.BOLD, 25));
     }
 
     private void addComponents() {
@@ -68,5 +98,14 @@ public class GUI extends JFrame {
         r3.add(a3);
         r4.add(a4);
         r5.add(a5);
+        titlePanel.add(title);
+        captionPanel.add(caption);
+        letterPanel.add(lettertitle);
+        letterPanel.add(letterlabel);
+    }
+
+    private void randomCategories() {
+        ArrayList<String> allCategories = new ArrayList<String>(Arrays.asList("Animals", "Food", "Country", "Color", "Movie", "Four Letter Word", "Fruit/Vegetable", "TV Show", "Girl's Name", "Boy's Name", "Body Part")
+
     }
 }
