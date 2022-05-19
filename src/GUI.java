@@ -104,7 +104,7 @@ public class GUI extends JFrame {
         letterPanel.add(letterlabel);
     }
 
-    private void randomCategories() {
-        ArrayList<String> allCategories = new ArrayList<String>(Arrays.asList("Animals", "Food", "Country", "Color", "Movie", "Four Letter Word", "Fruit/Vegetable", "TV Show", "Girl's Name", "Boy's Name", "Body Part")
-    }
+//    private void randomCategories() {
+//        ArrayList<String> allCategories = new ArrayList<String>(Arrays.asList("Animals", "Food", "Country", "Color", "Movie", "Four Letter Word", "Fruit/Vegetable", "TV Show", "Girl's Name", "Boy's Name", "Body Part")
+//    }
 }
