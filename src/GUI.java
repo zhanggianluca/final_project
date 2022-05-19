@@ -106,6 +106,5 @@ public class GUI extends JFrame {
 
     private void randomCategories() {
         ArrayList<String> allCategories = new ArrayList<String>(Arrays.asList("Animals", "Food", "Country", "Color", "Movie", "Four Letter Word", "Fruit/Vegetable", "TV Show", "Girl's Name", "Boy's Name", "Body Part")
-
     }
 }
