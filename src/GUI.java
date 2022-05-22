@@ -1,18 +1,18 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.Random;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
-public class GUI extends JFrame {
+public class GUI extends JFrame implements ActionListener {
     private JPanel titlePanel, captionPanel, letterPanel, r1, r2, r3, r4, r5, z1, z2, z3, z4, z5;
     private JTextField a1, a2, a3, a4, a5;
     private JLabel c1, c2, c3, c4, c5, lettertitle, title, caption;
     private String letter;
-    private ArrayList<String> categories;
+    private ArrayList<String> categories, answers;
     private JButton enter;
 
     public GUI() {
@@ -24,8 +24,8 @@ public class GUI extends JFrame {
         setJPanel();
         setJButton();
         addComponents();
-//        setActionCommands();
-//        addActionListeners();
+        setActionCommands();
+        addActionListeners();
         setLayout(new FlowLayout());
         add(titlePanel);
         add(captionPanel);
@@ -42,6 +42,28 @@ public class GUI extends JFrame {
         add(r5);
         add(enter);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void actionPerformed(ActionEvent click) {
+        String actionCommand = click.getActionCommand();
+        answers = new ArrayList<String>();
+        switch (actionCommand) {
+            case "enter":
+                ArrayList<JTextField> textFields = new ArrayList<JTextField>(Arrays.asList(a1, a2, a3, a4, a5));
+                for (JTextField textField: textFields) {
+                    answers.add(textField.getText());
+                }
+                boolean[] colorWords = check();
+                for (int i = 0; i < textFields.size(); i++) {
+                    if (colorWords[i]) {
+                        textFields.get(i).setForeground(Color.GREEN);
+                    }
+                    else {
+                        textFields.get(i).setForeground(Color.RED);
+                    }
+                }
+                break;
+        }
     }
 
     public void setJTextField() {
@@ -141,9 +163,17 @@ public class GUI extends JFrame {
         letterPanel.add(lettertitle);
     }
 
+    private void setActionCommands() {
+        enter.setActionCommand("enter");
+    }
+
+    private void addActionListeners() {
+        enter.addActionListener(this);
+    }
+
     private void randomCategories() {
         categories = new ArrayList<String>();
-        ArrayList<String> allCategories = new ArrayList<String>(Arrays.asList("Mammals", "Fast Food Chains", "Country", "Color", "Movie", "Four Letter Word", "Fruit/Vegetable", "TV Show", "Girl's Name", "Boy's Name", "Body Part"));
+        ArrayList<String> allCategories = new ArrayList<String>(Arrays.asList("Mammals", "Fast Food Chains", "Country", "Color", "Four Letter Word", "Fruit/Vegetable", "Girl's Name", "Boy's Name", "Body Part"));
         for (int i = 0; i < 5; i++) {
             int randomNum = (int) (Math.random() * allCategories.size()-1);
             categories.add(allCategories.get(randomNum));
@@ -153,4 +183,97 @@ public class GUI extends JFrame {
             System.out.println(categories.get(i));
         }
     }
+
+    public boolean[] check() {
+        boolean[] validity = new boolean[answers.size()];
+        int index = 0;
+        for (int i = 0; i < answers.size(); i++) {
+            if (categories.get(i).equals("Mammals")) {
+                String[] mammals = read("mammals.txt");
+                boolean b = hasAnswer(answers.get(i), mammals);
+                validity[index] = b;
+                index++;
+            }
+            if (categories.get(i).equals("Fast Food Chains")) {
+                String[] mammals = read("fast_food.txt");
+                boolean b = hasAnswer(answers.get(i), mammals);
+                validity[index] = b;
+                index++;
+            }
+            if (categories.get(i).equals("Country")) {
+                String[] mammals = read("countries.txt");
+                boolean b = hasAnswer(answers.get(i), mammals);
+                validity[index] = b;
+                index++;
+            }
+            if (categories.get(i).equals("Color")) {
+                String[] mammals = read("colors.txt");
+                boolean b = hasAnswer(answers.get(i), mammals);
+                validity[index] = b;
+                index++;
+            }
+            if (categories.get(i).equals("Four Letter Word")) {
+                String[] mammals = read("four_letter_words.txt");
+                boolean b = hasAnswer(answers.get(i), mammals);
+                validity[index] = b;
+                index++;
+            }
+            if (categories.get(i).equals("Fruit/Vegetable")) {
+                String[] mammals = read("mammals.txt");
+                boolean b = hasAnswer(answers.get(i), mammals);
+                validity[index] = b;
+                index++;
+            }
+            if (categories.get(i).equals("Girl's Name")) {
+                String[] mammals = read("girl_names.txt");
+                boolean b = hasAnswer(answers.get(i), mammals);
+                validity[index] = b;
+                index++;
+            }
+            if (categories.get(i).equals("Boy's Name")) {
+                String[] mammals = read("boy_names.txt");
+                boolean b = hasAnswer(answers.get(i), mammals);
+                validity[index] = b;
+                index++;
+            }
+            if (categories.get(i).equals("Body Part")) {
+                String[] mammals = read("body_parts.txt");
+                boolean b = hasAnswer(answers.get(i), mammals);
+                validity[index] = b;
+                index++;
+            }
+        }
+        return validity;
+    }
+
+    public boolean hasAnswer(String answer, String[] list) {
+        for (String ans: list) {
+            if (ans.toUpperCase().equals(answer.toUpperCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String[] read(String file) {
+        String result = "";
+        try {
+            File myObj = new File(file);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                if (data.length() <= 2) {
+                    data = "";
+                }
+                result += data + "\n";
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        String[] answers = result.split("\n");
+        return answers;
+    }
+
 }
