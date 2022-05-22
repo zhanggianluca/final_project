@@ -219,7 +219,7 @@ public class GUI extends JFrame implements ActionListener {
                 index++;
             }
             if (categories.get(i).equals("Fruit/Vegetable")) {
-                String[] mammals = read("mammals.txt");
+                String[] mammals = read("fruits.txt");
                 boolean b = hasAnswer(answers.get(i), mammals);
                 validity[index] = b;
                 index++;
