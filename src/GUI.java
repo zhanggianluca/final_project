@@ -17,6 +17,12 @@ public class GUI extends JFrame implements ActionListener {
 
     public GUI() {
         setTitle("SCATTERGORIES");
+        initGame();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void initGame() {
+        setTitle("SCATTERGORIES");
         randomLetter();
         randomCategories();
         setJTextField();
@@ -41,7 +47,7 @@ public class GUI extends JFrame implements ActionListener {
         add(z5);
         add(r5);
         add(enter);
-        add(again); 
+        add(again);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -65,8 +71,8 @@ public class GUI extends JFrame implements ActionListener {
                 }
                 break;
             case "again":
+                dispose();
                 new GUI();
-                break;
         }
     }
 
@@ -124,7 +130,7 @@ public class GUI extends JFrame implements ActionListener {
         enter.setBorder(border);
 
         again = new JButton("<html><font color = 0078FF>PLAY AGAIN ⟲</font>");
-        again.setPreferredSize(new Dimension(100, 45));
+        again.setPreferredSize(new Dimension(150, 45));
         again.setBackground(new Color(255, 189, 0));
         again.setFont(new Font("Helvetica", Font.BOLD, 14));
         Border border1 = BorderFactory.createEmptyBorder();
