@@ -13,7 +13,7 @@ public class GUI extends JFrame implements ActionListener {
     private JLabel c1, c2, c3, c4, c5, lettertitle, title, caption;
     private String letter;
     private ArrayList<String> categories, answers;
-    private JButton enter;
+    private JButton enter, again;
 
     public GUI() {
         setTitle("SCATTERGORIES");
@@ -41,6 +41,7 @@ public class GUI extends JFrame implements ActionListener {
         add(z5);
         add(r5);
         add(enter);
+        add(again); 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -62,6 +63,9 @@ public class GUI extends JFrame implements ActionListener {
                         textFields.get(i).setForeground(Color.RED);
                     }
                 }
+                break;
+            case "again":
+                new GUI();
                 break;
         }
     }
@@ -118,6 +122,13 @@ public class GUI extends JFrame implements ActionListener {
         enter.setFont(new Font("Helvetica", Font.BOLD, 14));
         Border border = BorderFactory.createEmptyBorder();
         enter.setBorder(border);
+
+        again = new JButton("<html><font color = 0078FF>PLAY AGAIN ⟲</font>");
+        again.setPreferredSize(new Dimension(100, 45));
+        again.setBackground(new Color(255, 189, 0));
+        again.setFont(new Font("Helvetica", Font.BOLD, 14));
+        Border border1 = BorderFactory.createEmptyBorder();
+        again.setBorder(border1);
     }
 
     public void randomLetter() {
@@ -165,10 +176,12 @@ public class GUI extends JFrame implements ActionListener {
 
     private void setActionCommands() {
         enter.setActionCommand("enter");
+        again.setActionCommand("again");
     }
 
     private void addActionListeners() {
         enter.addActionListener(this);
+        again.addActionListener(this);
     }
 
     private void randomCategories() {
@@ -195,50 +208,56 @@ public class GUI extends JFrame implements ActionListener {
                 index++;
             }
             if (categories.get(i).equals("Fast Food Chains")) {
-                String[] mammals = read("fast_food.txt");
-                boolean b = hasAnswer(answers.get(i), mammals);
+                String[] fast_food = read("fast_food.txt");
+                String finalString = "";
+                for (int j = 0; j < answers.get(i).length(); j++) {
+                    if (!(answers.get(i).substring(j, j+1).equals("\'") || answers.get(i).substring(j, j+1).equals("-") || answers.get(i).substring(j, j+1).equals("."))) {
+                        finalString += answers.get(i).substring(j, j+1);
+                    }
+                }
+                boolean b = hasAnswer(finalString, fast_food);
                 validity[index] = b;
                 index++;
             }
             if (categories.get(i).equals("Country")) {
-                String[] mammals = read("countries.txt");
-                boolean b = hasAnswer(answers.get(i), mammals);
+                String[] countries = read("countries.txt");
+                boolean b = hasAnswer(answers.get(i), countries);
                 validity[index] = b;
                 index++;
             }
             if (categories.get(i).equals("Color")) {
-                String[] mammals = read("colors.txt");
-                boolean b = hasAnswer(answers.get(i), mammals);
+                String[] colors = read("colors.txt");
+                boolean b = hasAnswer(answers.get(i), colors);
                 validity[index] = b;
                 index++;
             }
             if (categories.get(i).equals("Four Letter Word")) {
-                String[] mammals = read("four_letter_words.txt");
-                boolean b = hasAnswer(answers.get(i), mammals);
+                String[] words = read("four_letter_words.txt");
+                boolean b = hasAnswer(answers.get(i), words);
                 validity[index] = b;
                 index++;
             }
             if (categories.get(i).equals("Fruit/Vegetable")) {
-                String[] mammals = read("fruits.txt");
-                boolean b = hasAnswer(answers.get(i), mammals);
+                String[] fruits = read("fruits.txt");
+                boolean b = hasAnswer(answers.get(i), fruits);
                 validity[index] = b;
                 index++;
             }
             if (categories.get(i).equals("Girl's Name")) {
-                String[] mammals = read("girl_names.txt");
-                boolean b = hasAnswer(answers.get(i), mammals);
+                String[] girls = read("girl_names.txt");
+                boolean b = hasAnswer(answers.get(i), girls);
                 validity[index] = b;
                 index++;
             }
             if (categories.get(i).equals("Boy's Name")) {
-                String[] mammals = read("boy_names.txt");
-                boolean b = hasAnswer(answers.get(i), mammals);
+                String[] boys = read("boy_names.txt");
+                boolean b = hasAnswer(answers.get(i), boys);
                 validity[index] = b;
                 index++;
             }
             if (categories.get(i).equals("Body Part")) {
-                String[] mammals = read("body_parts.txt");
-                boolean b = hasAnswer(answers.get(i), mammals);
+                String[] body_parts = read("body_parts.txt");
+                boolean b = hasAnswer(answers.get(i), body_parts);
                 validity[index] = b;
                 index++;
             }
@@ -247,10 +266,13 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     public boolean hasAnswer(String answer, String[] list) {
-        for (String ans: list) {
-            if (ans.toUpperCase().equals(answer.toUpperCase())) {
-                return true;
+        if (answer.substring(0, 1).toUpperCase().equals(letter.toUpperCase())) {
+            for (String ans: list) {
+                if (ans.toUpperCase().equals(answer.toUpperCase())) {
+                    return true;
+                }
             }
+            return false;
         }
         return false;
     }

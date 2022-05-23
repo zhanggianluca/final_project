@@ -37,10 +37,10 @@ Dairy Queen
 Del Taco
 Dicks DriveIn
 Dog n Suds
-Dominos Pizza
+Dominos
 Donatos Pizza
 Dunkin Donuts
-Einstein Bros. Bagels
+Einstein Bros Bagels
 El Pollo Loco
 Erbert & Gerberts
 Fatburger
@@ -64,6 +64,7 @@ Hardees
 Harolds Chicken Shack
 Heart Attack Grill
 Hogi Yogi
+Hungry Jacks
 Honey Dew Donuts
 Hot Dog on a Stick
 Hot n Now
@@ -97,7 +98,7 @@ Meadows Frozen Custard
 Mighty Taco
 Milios Sandwiches
 Milos Hamburgers
-Mrs. Winners Chicken & Biscuits
+Mrs Winners Chicken & Biscuits
 Nathans Famous
 Nedicks
 Noodles and Company
@@ -128,6 +129,7 @@ Red Burrito
 Round Table Pizza
 Roy Rogers Family Restaurants
 Rubios
+Red Robin
 Rubys
 Runza
 Sbarro
@@ -135,6 +137,7 @@ Schlotzskys
 Shakeys Pizza
 Skippers
 Skyline Chili
+Starbucks
 Sizzler
 Sonic DriveIn
 Spangles
