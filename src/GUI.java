@@ -6,23 +6,28 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.Timer;
 
 public class GUI extends JFrame implements ActionListener {
-    private JPanel titlePanel, captionPanel, letterPanel, r1, r2, r3, r4, r5, z1, z2, z3, z4, z5;
+    private JPanel titlePanel, captionPanel, letterPanel, r1, r2, r3, r4, r5, z1, z2, z3, z4, z5, cd;
     private JTextField a1, a2, a3, a4, a5;
-    private JLabel c1, c2, c3, c4, c5, lettertitle, title, caption;
+    private JLabel c1, c2, c3, c4, c5, lettertitle, title, caption, cdLabel;
     private String letter;
+    private Timer countdown;
     private ArrayList<String> categories, answers;
     private JButton enter, again;
 
     public GUI() {
-        setTitle("SCATTERGORIES");
         initGame();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void initGame() {
         setTitle("SCATTERGORIES");
+        setSize(600, 700);
+        getContentPane().setBackground(new Color(3, 206,242));
+        setLocationRelativeTo(null);
+        setVisible(true);
         randomLetter();
         randomCategories();
         setJTextField();
@@ -32,6 +37,7 @@ public class GUI extends JFrame implements ActionListener {
         addComponents();
         setActionCommands();
         addActionListeners();
+        countdown();
         setLayout(new FlowLayout());
         add(titlePanel);
         add(captionPanel);
@@ -48,7 +54,33 @@ public class GUI extends JFrame implements ActionListener {
         add(r5);
         add(enter);
         add(again);
+        add(cd);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void countdown() {
+        countdown = new Timer();
+
+        countdown.scheduleAtFixedRate(new TimerTask() {
+            int i = 59;
+
+            public void run() {
+
+                if (i < 10) {
+                    cdLabel.setText(String.format("<html><font color = 000000>Time left - </font><font color = FFE400>0:0%s</font>", i));
+                }
+                else {
+                    cdLabel.setText(String.format("<html><font color = 000000>Time left - </font><font color = FFE400>0:%s</font>", i));
+                }
+                i--;
+
+                if (i < 0) {
+                    countdown.cancel();
+                    cdLabel.setText("Time Over");
+                    enter.doClick();
+                }
+            }
+        }, 0, 1000);
     }
 
     public void actionPerformed(ActionEvent click) {
@@ -58,7 +90,12 @@ public class GUI extends JFrame implements ActionListener {
             case "enter":
                 ArrayList<JTextField> textFields = new ArrayList<JTextField>(Arrays.asList(a1, a2, a3, a4, a5));
                 for (JTextField textField: textFields) {
-                    answers.add(textField.getText());
+                    if (textField.getText() == null) {
+                        answers.add("");
+                    }
+                    else {
+                        answers.add(textField.getText());
+                    }
                 }
                 boolean[] colorWords = check();
                 for (int i = 0; i < textFields.size(); i++) {
@@ -68,6 +105,9 @@ public class GUI extends JFrame implements ActionListener {
                     else {
                         textFields.get(i).setForeground(Color.RED);
                     }
+                }
+                for (JTextField t: textFields) {
+                    t.setEditable(false);
                 }
                 break;
             case "again":
@@ -120,6 +160,10 @@ public class GUI extends JFrame implements ActionListener {
             panel.setPreferredSize(new Dimension(500, 30));
             panel.setBackground(new Color(3, 206,242));
         }
+
+        cd = new JPanel();
+        cd.setPreferredSize(new Dimension(500, 45));
+        cd.setBackground(new Color(3, 206,242));
     }
     public void setJButton() {
         enter = new JButton("<html><font color = 0078FF>ENTER</font>");
@@ -162,6 +206,9 @@ public class GUI extends JFrame implements ActionListener {
         for (JLabel cat: category) {
             cat.setFont(new Font("Bookman Old Style", Font.BOLD,20));
         }
+
+        cdLabel = new JLabel("<html><font color = 000000>Time left - </font><font color = FFE400>1:00</font>");
+        cdLabel.setFont(new Font("Stencil", Font.BOLD, 25));
     }
 
     private void addComponents() {
@@ -178,6 +225,7 @@ public class GUI extends JFrame implements ActionListener {
         titlePanel.add(title);
         captionPanel.add(caption);
         letterPanel.add(lettertitle);
+        cd.add(cdLabel);
     }
 
     private void setActionCommands() {
@@ -272,6 +320,9 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     public boolean hasAnswer(String answer, String[] list) {
+        if (answer.equals("")) {
+            return false;
+        }
         if (answer.substring(0, 1).toUpperCase().equals(letter.toUpperCase())) {
             for (String ans: list) {
                 if (ans.toUpperCase().equals(answer.toUpperCase())) {
