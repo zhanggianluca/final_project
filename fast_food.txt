@@ -122,6 +122,7 @@ Portillos
 Port of Subs
 Qdoba
 Quiznos Sub
+Quiznos
 Raising Canes Chicken Fingers
 Rallys
 Rax Restaurants

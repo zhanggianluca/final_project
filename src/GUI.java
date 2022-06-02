@@ -94,7 +94,11 @@ public class GUI extends JFrame implements ActionListener {
                         answers.add("");
                     }
                     else {
-                        answers.add(textField.getText());
+                        String ans = textField.getText();
+                        if (ans.substring(ans.length()-1).equals(" ")) {
+                            ans = textField.getText().substring(0, ans.length() - 1);
+                        }
+                        answers.add(ans);
                     }
                 }
                 boolean[] colorWords = check();
@@ -108,6 +112,9 @@ public class GUI extends JFrame implements ActionListener {
                 }
                 for (JTextField t: textFields) {
                     t.setEditable(false);
+                }
+                for (int i = 0; i < answers.size(); i++) {
+                    System.out.println(answers.get(i));
                 }
                 break;
             case "again":
