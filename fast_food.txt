@@ -23,7 +23,8 @@ Cafe Rio
 Captain Ds
 Carls Jr
 Charleys Grilled Subs
-Checkers (also called Rallys DriveIn)
+Chipotle
+Checkers
 ChickfilA
 Chicken Express
 Chinese Gourmet Express
@@ -43,6 +44,7 @@ Dunkin Donuts
 Einstein Bros Bagels
 El Pollo Loco
 Erbert & Gerberts
+Erbert and Gerberts
 Fatburger
 Fazolis
 Firehouse Subs
@@ -53,6 +55,8 @@ Friendlys
 Godfathers Pizza
 Gold Star Chili
 Good Times Burgers & Frozen Custard
+Good Times Burgers
+Good Times Burgers and Frozen Custard
 Grandys
 Grays Papaya
 Green Burrito
@@ -69,6 +73,8 @@ Honey Dew Donuts
 Hot Dog on a Stick
 Hot n Now
 In N Out
+Jollibee
+Jollibees
 Ivars
 Jack in the Box
 Jerrys Subs & Pizza

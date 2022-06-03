@@ -14,6 +14,7 @@ public class GUI extends JFrame implements ActionListener {
     private JLabel c1, c2, c3, c4, c5, lettertitle, title, caption, cdLabel;
     private String letter;
     private Timer countdown;
+    private boolean cancelTimer;
     private ArrayList<String> categories, answers;
     private JButton enter, again;
 
@@ -74,7 +75,7 @@ public class GUI extends JFrame implements ActionListener {
                 }
                 i--;
 
-                if (i < 0) {
+                if (i < 0 || cancelTimer) {
                     countdown.cancel();
                     cdLabel.setText("Time Over");
                     enter.doClick();
@@ -90,7 +91,7 @@ public class GUI extends JFrame implements ActionListener {
             case "enter":
                 ArrayList<JTextField> textFields = new ArrayList<JTextField>(Arrays.asList(a1, a2, a3, a4, a5));
                 for (JTextField textField: textFields) {
-                    if (textField.getText() == null) {
+                    if (textField.getText() == null || textField.getText().equals("")) {
                         answers.add("");
                     }
                     else {
@@ -113,9 +114,7 @@ public class GUI extends JFrame implements ActionListener {
                 for (JTextField t: textFields) {
                     t.setEditable(false);
                 }
-                for (int i = 0; i < answers.size(); i++) {
-                    System.out.println(answers.get(i));
-                }
+                cancelTimer = true;
                 break;
             case "again":
                 dispose();
