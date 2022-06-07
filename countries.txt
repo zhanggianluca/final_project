@@ -4,6 +4,8 @@ Algeria
 Andorra
 Angola
 Antigua & Barbuda
+Antigua
+Antigua and Barbuda
 Argentina
 Armenia
 Australia
@@ -21,6 +23,8 @@ Benin
 Bhutan
 Bolivia
 Bosnia Herzegovina
+Bosnia and Herzegovina
+Bosnia
 Botswana
 Brazil
 Brunei
@@ -41,11 +45,13 @@ Comoros
 Congo
 DRC
 Democratic Republic of Congo
+DRC
 Costa Rica
 Croatia
 Cuba
 Cyprus
 Czech Republic
+Czechia
 Denmark
 Djibouti
 Dominica
@@ -71,6 +77,7 @@ Grenada
 Guatemala
 Guinea
 Guinea-Bissau
+Guinea Bissau
 Guyana
 Haiti
 Honduras
@@ -92,6 +99,7 @@ Kenya
 Kiribati
 North Korea
 South Korea
+Korea
 Kosovo
 Kuwait
 Kyrgyzstan
@@ -147,11 +155,17 @@ Romania
 Russia
 Rwanda
 St Kitts & Nevis
+St Kitts
+St Kitts and Nevis
 St Lucia
 St Vincent & the Grenadines
+St Vincent
+St Vincent and the Grenadines
 Samoa
 San Marino
 Sao Tome & Principe
+Sao Tome
+Sao Tome and Principe
 Saudi Arabia
 Senegal
 Serbia
@@ -179,6 +193,8 @@ Thailand
 Togo
 Tonga
 Trinidad & Tobago
+Trinidad
+Trinidad and Tobago
 Tunisia
 Turkey
 Turkmenistan
