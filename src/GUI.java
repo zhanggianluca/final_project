@@ -77,7 +77,7 @@ public class GUI extends JFrame implements ActionListener {
 
                 if (i < 0 || cancelTimer) {
                     countdown.cancel();
-                    cdLabel.setText("Time Over");
+                    cdLabel.setText("<html><font color = 000000>Time Over</font>");
                     enter.doClick();
                 }
             }
